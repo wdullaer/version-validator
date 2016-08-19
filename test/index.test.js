@@ -315,7 +315,7 @@ describe('routeVersion()', () => {
   it('should call next() when the version matches', () => {
     const version = '1.0.0'
     const router = routeVersion.bind(version)
-    const req = {version}
+    const req = {matchedVersion: version}
     const next = (arg) => {
       expect(arg).to.be.undefined
     }
@@ -326,7 +326,7 @@ describe('routeVersion()', () => {
   it('should call next(\'route\') when the version does not match', () => {
     const version = '1.0.0'
     const router = routeVersion.bind(version)
-    const req = {version: '2.0.0'}
+    const req = {matchedVersion: '2.0.0'}
     const next = (arg) => {
       expect(arg).to.equal('route')
     }
