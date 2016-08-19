@@ -1,0 +1,52 @@
+{
+  "name": "version-validator",
+  "version": "1.0.0",
+  "description": "Create expressjs middleware to help version routes in a REST API",
+  "author": "Wouter Dullaert",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/wdullaer/version-validator/issues"
+  },
+  "homepage": "https://github.com/wdullaer/version-validator#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wdullaer/version-validator.git"
+  },
+  "keywords": [
+    "express",
+    "version",
+    "semver",
+    "middleware",
+    "accept-version"
+  ],
+  "main": "lib/index.js",
+  "scripts": {
+    "lint": "./node_modules/.bin/eslint ./lib ./test",
+    "mocha": "./node_modules/mocha/bin/_mocha",
+    "test": "npm run lint && ./node_modules/.bin/istanbul cover --root lib/ ./node_modules/mocha/bin/_mocha",
+    "prepublish": "npm run test"
+  },
+  "engines": {
+    "node": ">=4"
+  },
+  "eslintConfig": {
+    "extends": "standard"
+  },
+  "dependencies": {
+    "semver": "~5.3.0"
+  },
+  "devDependencies": {
+    "chai": "~3.5.0",
+    "chai-as-promised": "~5.3.0",
+    "chai-http": "git+https://github.com/farmisen/chai-http.git#Issue-75_Cant_test_expected_error_responses_because_superagent_throws",
+    "codeclimate-test-reporter": "~0.3.3",
+    "eslint": "~3.3.1",
+    "eslint-config-standard": "~5.3.5",
+    "eslint-plugin-standard": "~2.0.0",
+    "eslint-plugin-promise": "~2.0.1",
+    "express": "~4.14.0",
+    "istanbul": "~0.4.4",
+    "mocha": "~3.0.2",
+    "rewire": "~2.5.2"
+  }
+}
