@@ -67,6 +67,44 @@ describe('addVersion()', () => {
     func(req, null, next)
   })
 
+  it('should set API-VERSION in the response when this.sendVersionHeader = true', () => {
+    let called = false
+    const versions = ['1.0.0']
+    const req = {
+      query: {version: '~1.0.0'}
+    }
+    const func = addVersion.bind({supportedVersions: versions, sendVersionHeader: true})
+    const res = {
+      set: (header, value) => {
+        expect(header).to.equal('API-VERSION')
+        expect(value).to.equal('1.0.0')
+        called = true
+      }
+    }
+    const next = () => {}
+
+    func(req, res, next)
+    expect(called).to.equal.true
+  })
+
+  it('should not set API-VERSION in the response when this.sendVersionHeader = false', () => {
+    let called = false
+    const versions = ['1.0.0']
+    const req = {
+      query: {version: '~1.0.0'}
+    }
+    const func = addVersion.bind({supportedVersions: versions, sendVersionHeader: false})
+    const res = {
+      set: (header, value) => {
+        called = true
+      }
+    }
+    const next = () => {}
+
+    func(req, res, next)
+    expect(called).to.equal.false
+  })
+
   it('should call handleUnsupported if there is no matching version', () => {
     let called = false
     const options = {
@@ -171,6 +209,33 @@ describe('validateArgs()', () => {
     const func = validateArgs.bind(null, options)
 
     expect(func).to.throw(TypeError, 'isMandatory should be a boolean')
+  })
+
+  it('should default sendVersionHeader to true', () => {
+    const options = {
+      versions: ['1.0.0']
+    }
+
+    expect(validateArgs(options)).to.have.property('sendVersionHeader', true)
+  })
+
+  it('should set sendVersionHeader to the supplied value', () => {
+    const options = {
+      versions: ['1.0.0'],
+      sendVersionHeader: false
+    }
+
+    expect(validateArgs(options)).to.have.property('sendVersionHeader', false)
+  })
+
+  it('should throw an error if sendVersionHeader is not a boolean', () => {
+    const options = {
+      versions: ['1.0.0'],
+      sendVersionHeader: 'true'
+    }
+    const func = validateArgs.bind(null, options)
+
+    expect(func).to.throw(TypeError, 'sendVersionHeader should be a boolean')
   })
 
   it('should default generateError to generateDefaultError()', () => {

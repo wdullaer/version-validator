@@ -121,6 +121,31 @@ describe('Integration tests', () => {
       return expect(resp).to.eventually.have.status(500)
         .and.have.property('text', 'custom error')
     })
+
+    it('should set API-VERSION header when sendVersionHeader = true', () => {
+      const options = {
+        versions: ['1.0.0']
+      }
+      let resp = request(createServer(options))
+        .get('/')
+        .query({version: '1.0.0'})
+
+      return expect(resp).to.eventually.have.status(200)
+        .and.have.header('API-VERSION', '1.0.0')
+    })
+
+    it('should not set API-VERSION header when sendVersionHeader = false', () => {
+      const options = {
+        versions: ['1.0.0'],
+        sendVersionHeader: false
+      }
+      let resp = request(createServer(options))
+        .get('/')
+        .query({version: '1.0.0'})
+
+      return expect(resp).to.eventually.have.status(200)
+        .and.not.have.header('API-VERSION')
+    })
   })
 
   describe('isVersion', () => {

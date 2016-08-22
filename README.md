@@ -119,6 +119,7 @@ Options:
 * versions: an array of supported semver versions (`['1.0.0', '2.0.0']`) (mandatory)
 * sendReply: a boolean specifying whether the middleware will send a response directly on error, or call `next(error)` (default: `true`)
 * isMandatory: a boolean specifying whether version information is mandatory in a request or not (default: `false`)
+* sendVersionHeader: add a header `api-version` with the matched version to the response (default: `true`)
 * generateError: a function which generates the error to passed into `next(error)` default:  
   ```javascript
   function generateDefaultError() {
