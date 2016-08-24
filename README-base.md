@@ -9,6 +9,7 @@ This package will generate middleware to handle version management in your REST 
 It is based on the conventions used in [restify](https://restify.com) and allows you to easily create a similar flow in  [expressjs](https://expressjs.com).
 
 The package will parse the version as follows:
+
 1. Specified in the query parameter version: `req.query.version`
 2. Specified in the header as `accept-version`: `req.headers['accept-version']`
 

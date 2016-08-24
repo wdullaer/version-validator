@@ -9,6 +9,7 @@ This package will generate middleware to handle version management in your REST 
 It is based on the conventions used in [restify](https://restify.com) and allows you to easily create a similar flow in  [expressjs](https://expressjs.com).
 
 The package will parse the version as follows:
+
 1. Specified in the query parameter version: `req.query.version`
 2. Specified in the header as `accept-version`: `req.headers['accept-version']`
 
@@ -127,7 +128,7 @@ An object containing the configuration options of the validateVersion function
 -   `sendReply` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 -   `isMandatory` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
 -   `sendVersionHeader` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
--   `generateError` **?[ErrorGenerator](###errorgenerator)** 
+-   `generateError` **?[ErrorGenerator](#errorgenerator)** 
 
 ### validateVersion
 
@@ -135,7 +136,7 @@ Generates a middleware to parse and validate versions out of the request
 
 **Parameters**
 
--   `args` **([ValidatorOptions](###validatoroptions) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)** An object of options, or an array of supported semver versions
+-   `args` **([ValidatorOptions](#validatoroptions) \| [Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>)** An object of options, or an array of supported semver versions
 
 **Examples**
 
