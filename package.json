@@ -21,6 +21,7 @@
   ],
   "main": "lib/index.js",
   "scripts": {
+    "docs": "cat README-base.md > README.md && ./node_modules/.bin/documentation build -f md ./lib/index.js | sed 's/^# /### /g' >> README.md",
     "lint": "./node_modules/.bin/eslint ./lib ./test",
     "mocha": "./node_modules/mocha/bin/_mocha",
     "test": "npm run lint && ./node_modules/.bin/istanbul cover --root lib/ ./node_modules/mocha/bin/_mocha",
@@ -30,7 +31,10 @@
     "node": ">=4"
   },
   "eslintConfig": {
-    "extends": "standard"
+    "extends": "standard",
+    "rules": {
+      "valid-jsdoc": 1
+    }
   },
   "dependencies": {
     "semver": "~5.3.0"
@@ -40,6 +44,7 @@
     "chai-as-promised": "~6.0.0",
     "chai-http": "git+https://github.com/chaijs/chai-http.git#master",
     "codeclimate-test-reporter": "~0.4.0",
+    "documentation": "~4.0.0-beta10",
     "eslint": "~3.13.1",
     "eslint-config-standard": "~6.2.1",
     "eslint-plugin-standard": "~2.0.1",
