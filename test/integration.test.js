@@ -9,7 +9,7 @@ let expect = chai.expect
 let express = require('express')
 let validateVersion = require('../lib')
 
-let request = (app) => chai.request(app, {badStatusCausesError: false})
+let request = (app) => chai.request(app)
 
 describe('Integration tests', () => {
   describe('validateVersion()', () => {
