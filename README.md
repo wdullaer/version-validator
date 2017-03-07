@@ -1,5 +1,4 @@
 # Version Validator
-
 [![Greenkeeper badge](https://badges.greenkeeper.io/wdullaer/version-validator.svg)](https://greenkeeper.io/)
 ![NPM Version](https://img.shields.io/npm/v/version-validator.svg)
 [![Build Status](https://travis-ci.org/wdullaer/sse-utils.svg?branch=master)](https://travis-ci.org/wdullaer/version-validator)
@@ -118,7 +117,7 @@ app.use((error, req, res, next) => res.status(500).send(error.message))
 A function generating a custom error to be passed into next when the version
 is not valid
 
-Returns **[error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)** 
+Returns **[error](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error)**
 
 ### ValidatorOptions
 
@@ -126,11 +125,11 @@ An object containing the configuration options of the validateVersion function
 
 **Properties**
 
--   `versions` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>** 
--   `sendReply` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
--   `isMandatory` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
--   `sendVersionHeader` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** 
--   `generateError` **?[ErrorGenerator](#errorgenerator)** 
+-   `versions` **[Array](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array)&lt;[string](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String)>**
+-   `sendReply` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**
+-   `isMandatory` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**
+-   `sendVersionHeader` **?[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)**
+-   `generateError` **?[ErrorGenerator](#errorgenerator)**
 
 ### validateVersion
 
