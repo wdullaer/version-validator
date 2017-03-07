@@ -1,4 +1,6 @@
 # Version Validator
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/wdullaer/version-validator.svg)](https://greenkeeper.io/)
 ![NPM Version](https://img.shields.io/npm/v/version-validator.svg)
 [![Build Status](https://travis-ci.org/wdullaer/sse-utils.svg?branch=master)](https://travis-ci.org/wdullaer/version-validator)
 ![Dependency Status](https://david-dm.org/wdullaer/version-validator.svg)
