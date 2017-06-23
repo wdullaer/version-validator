@@ -84,7 +84,7 @@ describe('addVersion()', () => {
     const next = () => {}
 
     func(req, res, next)
-    expect(called).to.equal.true
+    expect(called).to.be.true
   })
 
   it('should not set API-VERSION in the response when this.sendVersionHeader = false', () => {
@@ -102,7 +102,7 @@ describe('addVersion()', () => {
     const next = () => {}
 
     func(req, res, next)
-    expect(called).to.equal.false
+    expect(called).to.be.false
   })
 
   it('should call handleUnsupported if there is no matching version', () => {

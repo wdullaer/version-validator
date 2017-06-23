@@ -48,7 +48,7 @@ describe('Integration tests', () => {
 
       return expect(resp).to.eventually.have.status(200)
         .and.be.json
-        .and.have.deep.property('body.matchedVersion', '2.0.0')
+        .and.have.nested.property('body.matchedVersion', '2.0.0')
     })
 
     it('should send an error reply if version is missing while mandatory', () => {
