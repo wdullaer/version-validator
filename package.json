@@ -1,6 +1,6 @@
 {
   "name": "version-validator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Create expressjs middleware to help version routes in a REST API",
   "author": "Wouter Dullaert",
   "license": "Apache-2.0",
