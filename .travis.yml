@@ -12,6 +12,7 @@ deploy:
   email: wouter.dullaert@gmail.com
   api_key:
     secure: AkEdgniqHDsIX3AcEHhcKGBKWCwhZzizWWIdBM70Pkec9Hs9muiczgMvRIarS2hlNKrGrQWn6uJd1G49idRJbSvCK0CyQXReYLt51d+5XGNJmqmWljMyfeSFtpSQPIG4l+kqHQf8BXG6iASi7+6fDIHCRYCtxia/eAKZW2bkNA8Iji5MaVSmQXzzwmMUM8FQzM1RcErGPc+8czxEIWVgU8optYMkg/0hzIh+B+FQ8c2Tpr/8PnLI/L/2h0O0jI5nboWV8bO8iK4TnViEzwq0wBHIC6DmcA4DbbjPR1c1CKXsb8RwtXoZB8PG9Md6R6fcTnkOZLveAFEpEDPebVFKY4zwDKwvBn16iRmM6Bcb0CPiuxZPvetnhGSfsOgZ83hBN+Q5naS3sttAzAGysah7GOqKGA/ljdjs3O73skmiyIO1TWXQONIfVb1iFzVXStzCaqM2HGdGiiTJIBiXk5tDd4q7M0yaRV1Du8rvj3paSkYS0dMvcUYhkTC0PAHLohFWPc7BZUvp+7L+RxuBRNkCkubYNi+a2bWCItmklckrYfuZ4oUMxiDPT5N7b+y7j27+qaBZleWkKCtrOjxAUkceVOb4ecwO1Yi58S4LRJk6ghuvBhWHhtft9VEprRrjvBLdfpn5VVAPsh6hyrhhE0K5MoyjmLHSKgMqhYX/RKfE2mQ=
+  skip_cleanup: true
   on:
     tags: true
     node: '6'
