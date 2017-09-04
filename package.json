@@ -44,7 +44,7 @@
     "chai-as-promised": "~7.1.1",
     "chai-http": "git+https://github.com/chaijs/chai-http.git#master",
     "codeclimate-test-reporter": "~0.5.0",
-    "documentation": "~5.2.0",
+    "documentation": "~5.3.0",
     "eslint": "~4.6.0",
     "eslint-config-standard": "~10.2.1",
     "eslint-plugin-import": "~2.7.0",
