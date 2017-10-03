@@ -151,21 +151,22 @@ describe('Integration tests', () => {
   describe('isVersion', () => {
     it('should call the next handler in the chain if the version matches', () => {
       const version = '1.0.0'
-      let resp = request(createRoutingServer(version))
+      let resp = request(createRoutingServer([version], version))
         .get('/')
         .query({version})
 
-      expect(resp).to.eventually.have.status(200)
+      return expect(resp).to.eventually.have.status(200)
         .and.be.json
     })
 
-    it('should call the next route if the version does not matche', () => {
+    it('should call the next route if the version does not match', () => {
       const version = '2.0.0'
-      let resp = request(createRoutingServer(version))
+      const requestedVersion = '3.0.0'
+      let resp = request(createRoutingServer([requestedVersion, version], version))
         .get('/')
-        .query({version})
+        .query({version: requestedVersion})
 
-      expect(resp).to.eventually.have.status(201)
+      return expect(resp).to.eventually.have.status(201)
         .and.be.json
     })
   })
@@ -183,14 +184,14 @@ function createServer (options) {
   return app
 }
 
-function createRoutingServer (version) {
+function createRoutingServer (versions, version) {
   let app = express()
-  app.use(validateVersion.validateVersion([version]))
+  app.use(validateVersion.validateVersion(versions))
   app.get('*', validateVersion.isVersion(version), (req, res) => {
     res.status(200).json({matchedVersion: req.matchedVersion, version: req.version})
   })
   app.get('*', (req, res) => {
-    res.status(200).json({matchedVersion: req.matchedVersion, version: req.version})
+    res.status(201).json({matchedVersion: req.matchedVersion, version: req.version})
   })
   return app
 }
