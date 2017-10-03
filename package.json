@@ -23,7 +23,7 @@
   "scripts": {
     "docs": "cat README-base.md > README.md && ./node_modules/.bin/documentation build -f md ./lib/index.js | sed 's/^# /### /g' >> README.md",
     "lint": "./node_modules/.bin/eslint ./lib ./test",
-    "mocha": "./node_modules/mocha/bin/_mocha",
+    "mocha": "./node_modules/mocha/bin/_mocha --exit",
     "test": "npm run lint && ./node_modules/.bin/nyc --root lib/ ./node_modules/mocha/bin/mocha --exit",
     "prepublishOnly": "npm run test"
   },
