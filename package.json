@@ -44,16 +44,16 @@
     "chai-as-promised": "~7.1.1",
     "chai-http": "git+https://github.com/chaijs/chai-http.git#master",
     "codeclimate-test-reporter": "~0.5.0",
-    "documentation": "~5.3.2",
-    "eslint": "~4.10.0",
+    "documentation": "~5.3.3",
+    "eslint": "~4.11.0",
     "eslint-config-standard": "~10.2.1",
     "eslint-plugin-import": "~2.8.0",
-    "eslint-plugin-node": "~5.2.0",
+    "eslint-plugin-node": "~5.2.1",
     "eslint-plugin-promise": "~3.6.0",
     "eslint-plugin-standard": "~3.0.1",
-    "express": "~4.16.1",
-    "mocha": "~4.0.0",
+    "express": "~4.16.2",
+    "mocha": "~4.0.1",
     "nyc": "~11.3.0",
-    "rewire": "~2.5.2"
+    "rewire": "~3.0.0"
   }
 }
