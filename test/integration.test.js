@@ -17,7 +17,7 @@ describe('Integration tests', () => {
       const versions = ['1.0.0']
       let resp = request(createServer(versions))
         .get('/')
-        .query({version: versions[0]})
+        .query({ version: versions[0] })
 
       return expect(resp).to.eventually.have.status(200)
     })
@@ -36,7 +36,7 @@ describe('Integration tests', () => {
       let resp = request(createServer(versions))
         .get('/')
         .set('accept-version', '2.0.0')
-        .query({version: versions[0]})
+        .query({ version: versions[0] })
 
       return expect(resp).to.eventually.have.status(200)
     })
@@ -66,7 +66,7 @@ describe('Integration tests', () => {
       const versions = ['1.0.0']
       let resp = request(createServer(versions))
         .get('/')
-        .query({version: 'a.b.c'})
+        .query({ version: 'a.b.c' })
 
       return expect(resp).to.eventually.have.status(400)
     })
@@ -75,7 +75,7 @@ describe('Integration tests', () => {
       const versions = ['1.0.0']
       let resp = request(createServer(versions))
         .get('/')
-        .query({version: '2.0.0'})
+        .query({ version: '2.0.0' })
 
       return expect(resp).to.eventually.have.status(400)
     })
@@ -84,7 +84,7 @@ describe('Integration tests', () => {
       const versions = ['1.0.0']
       let resp = request(createServer(versions))
         .get('/')
-        .query({version: '2.0.0'})
+        .query({ version: '2.0.0' })
 
       return expect(resp).to.eventually.have.status(400)
         .and.be.json
@@ -102,7 +102,7 @@ describe('Integration tests', () => {
       }
       let resp = request(createServer(options))
         .get('/')
-        .query({version: '2.0.0'})
+        .query({ version: '2.0.0' })
 
       return expect(resp).to.eventually.have.status(400)
         .and.have.property('text', 'Invalid Version')
@@ -116,7 +116,7 @@ describe('Integration tests', () => {
       }
       let resp = request(createServer(options))
         .get('/')
-        .query({version: '2.0.0'})
+        .query({ version: '2.0.0' })
 
       return expect(resp).to.eventually.have.status(500)
         .and.have.property('text', 'custom error')
@@ -128,7 +128,7 @@ describe('Integration tests', () => {
       }
       let resp = request(createServer(options))
         .get('/')
-        .query({version: '1.0.0'})
+        .query({ version: '1.0.0' })
 
       return expect(resp).to.eventually.have.status(200)
         .and.have.header('API-VERSION', '1.0.0')
@@ -141,7 +141,7 @@ describe('Integration tests', () => {
       }
       let resp = request(createServer(options))
         .get('/')
-        .query({version: '1.0.0'})
+        .query({ version: '1.0.0' })
 
       return expect(resp).to.eventually.have.status(200)
         .and.not.have.header('API-VERSION')
@@ -153,7 +153,7 @@ describe('Integration tests', () => {
       const version = '1.0.0'
       let resp = request(createRoutingServer([version], version))
         .get('/')
-        .query({version})
+        .query({ version })
 
       return expect(resp).to.eventually.have.status(200)
         .and.be.json
@@ -164,7 +164,7 @@ describe('Integration tests', () => {
       const requestedVersion = '3.0.0'
       let resp = request(createRoutingServer([requestedVersion, version], version))
         .get('/')
-        .query({version: requestedVersion})
+        .query({ version: requestedVersion })
 
       return expect(resp).to.eventually.have.status(201)
         .and.be.json
@@ -176,7 +176,7 @@ function createServer (options) {
   let app = express()
   app.use(validateVersion.validateVersion(options))
   app.get('*', (req, res) => {
-    res.status(200).json({matchedVersion: req.matchedVersion, version: req.version})
+    res.status(200).json({ matchedVersion: req.matchedVersion, version: req.version })
   })
   app.use((error, req, res, next) => {
     res.status(error.status || 500).send(error.message)
@@ -188,10 +188,10 @@ function createRoutingServer (versions, version) {
   let app = express()
   app.use(validateVersion.validateVersion(versions))
   app.get('*', validateVersion.isVersion(version), (req, res) => {
-    res.status(200).json({matchedVersion: req.matchedVersion, version: req.version})
+    res.status(200).json({ matchedVersion: req.matchedVersion, version: req.version })
   })
   app.get('*', (req, res) => {
-    res.status(201).json({matchedVersion: req.matchedVersion, version: req.version})
+    res.status(201).json({ matchedVersion: req.matchedVersion, version: req.version })
   })
   return app
 }

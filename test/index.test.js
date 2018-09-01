@@ -24,9 +24,9 @@ describe('addVersion()', () => {
   it('should set req.version to the requested version in the query', () => {
     const versions = ['1.0.0']
     const req = {
-      query: {version: '>=1.0.0'}
+      query: { version: '>=1.0.0' }
     }
-    const func = addVersion.bind({supportedVersions: versions})
+    const func = addVersion.bind({ supportedVersions: versions })
     const next = () => expect(req.version).to.equal('>=1.0.0')
 
     func(req, null, next)
@@ -36,9 +36,9 @@ describe('addVersion()', () => {
     const versions = ['1.0.0']
     const req = {
       query: {},
-      headers: {'accept-version': '>=1.0.0'}
+      headers: { 'accept-version': '>=1.0.0' }
     }
-    const func = addVersion.bind({supportedVersions: versions})
+    const func = addVersion.bind({ supportedVersions: versions })
     const next = () => expect(req.version).to.be.equal('>=1.0.0')
 
     func(req, null, next)
@@ -47,10 +47,10 @@ describe('addVersion()', () => {
   it('should prefer the query over the header', () => {
     const versions = ['1.0.0']
     const req = {
-      query: {version: '>=1.0.0'},
-      headers: {'api-version': '>=0.9.0'}
+      query: { version: '>=1.0.0' },
+      headers: { 'api-version': '>=0.9.0' }
     }
-    const func = addVersion.bind({supportedVersions: versions})
+    const func = addVersion.bind({ supportedVersions: versions })
     const next = () => expect(req.version).to.be.equal('>=1.0.0')
 
     func(req, null, next)
@@ -59,9 +59,9 @@ describe('addVersion()', () => {
   it('should set req.matchedVersion', () => {
     const versions = ['1.0.0']
     const req = {
-      query: {version: '>=0.9.5'}
+      query: { version: '>=0.9.5' }
     }
-    const func = addVersion.bind({supportedVersions: versions})
+    const func = addVersion.bind({ supportedVersions: versions })
     const next = () => expect(req.matchedVersion).to.be.equal('1.0.0')
 
     func(req, null, next)
@@ -71,9 +71,9 @@ describe('addVersion()', () => {
     let called = false
     const versions = ['1.0.0']
     const req = {
-      query: {version: '~1.0.0'}
+      query: { version: '~1.0.0' }
     }
-    const func = addVersion.bind({supportedVersions: versions, sendVersionHeader: true})
+    const func = addVersion.bind({ supportedVersions: versions, sendVersionHeader: true })
     const res = {
       set: (header, value) => {
         expect(header).to.equal('API-VERSION')
@@ -91,9 +91,9 @@ describe('addVersion()', () => {
     let called = false
     const versions = ['1.0.0']
     const req = {
-      query: {version: '~1.0.0'}
+      query: { version: '~1.0.0' }
     }
-    const func = addVersion.bind({supportedVersions: versions, sendVersionHeader: false})
+    const func = addVersion.bind({ supportedVersions: versions, sendVersionHeader: false })
     const res = {
       set: (header, value) => {
         called = true
@@ -114,7 +114,7 @@ describe('addVersion()', () => {
       supportedVersions: ['1.0.0']
     }
     const req = {
-      query: {version: '2.0.0'}
+      query: { version: '2.0.0' }
     }
     const func = addVersion.bind(options)
     const next = () => expect(called).to.be.true
@@ -138,13 +138,13 @@ describe('validateArgs()', () => {
   })
 
   it('should throw an error if versions is not an array', () => {
-    const options = {versions: '1.0.0'}
+    const options = { versions: '1.0.0' }
     const func = validateArgs.bind(null, options)
     expect(func).to.throw(TypeError, 'versions should be a list of strings')
   })
 
   it('should throw an error if the input does not contain a list of supported versions', () => {
-    const options = {isMandatary: true}
+    const options = { isMandatary: true }
     const func = validateArgs.bind(null, options)
 
     expect(func).to.throw(TypeError, 'Arguments should contain a list of supported versions')
@@ -369,7 +369,7 @@ describe('isVersion()', () => {
   })
 
   it('should throw an error if the version is not a string', () => {
-    const version = {foo: 'bar'}
+    const version = { foo: 'bar' }
     const output = isVersion.bind(null, version)
 
     expect(output).to.throw(TypeError)
@@ -380,7 +380,7 @@ describe('routeVersion()', () => {
   it('should call next() when the version matches', () => {
     const version = '1.0.0'
     const router = routeVersion.bind(version)
-    const req = {matchedVersion: version}
+    const req = { matchedVersion: version }
     const next = (arg) => {
       expect(arg).to.be.undefined
     }
@@ -391,7 +391,7 @@ describe('routeVersion()', () => {
   it('should call next(\'route\') when the version does not match', () => {
     const version = '1.0.0'
     const router = routeVersion.bind(version)
-    const req = {matchedVersion: '2.0.0'}
+    const req = { matchedVersion: '2.0.0' }
     const next = (arg) => {
       expect(arg).to.equal('route')
     }
