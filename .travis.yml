@@ -1,8 +1,8 @@
 language: node_js
 node_js:
+- '12'
 - '10'
 - '8'
-- '6'
 after_script:
 - nyc report reporter=text-lcov | codeclimate-test-reporter
 deploy:
@@ -13,7 +13,7 @@ deploy:
   skip_cleanup: true
   on:
     tags: true
-    node: '8'
+    node: '10'
 addons:
   code_climate:
     repo_token: c335973c213928c6367d34f20229d7c68f1fa0afa9420e962be0728b8a5461d7
