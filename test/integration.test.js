@@ -1,21 +1,21 @@
 'use strict'
-let chai = require('chai')
-let chaiHTTP = require('chai-http')
-let chaiPromise = require('chai-as-promised')
+const chai = require('chai')
+const chaiHTTP = require('chai-http')
+const chaiPromise = require('chai-as-promised')
 chai.use(chaiHTTP)
 chai.use(chaiPromise)
 
-let expect = chai.expect
-let express = require('express')
-let validateVersion = require('../lib')
+const expect = chai.expect
+const express = require('express')
+const validateVersion = require('../lib')
 
-let request = (app) => chai.request(app)
+const request = (app) => chai.request(app)
 
 describe('Integration tests', () => {
   describe('validateVersion()', () => {
     it('should parse a valid version in the query string', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .query({ version: versions[0] })
 
@@ -24,7 +24,7 @@ describe('Integration tests', () => {
 
     it('should parse a valid version in the header', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .set('accept-version', versions[0])
 
@@ -33,7 +33,7 @@ describe('Integration tests', () => {
 
     it('should prefer the query string over the header', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .set('accept-version', '2.0.0')
         .query({ version: versions[0] })
@@ -43,7 +43,7 @@ describe('Integration tests', () => {
 
     it('should send the max version if no version is specified and a version is not mandatory', () => {
       const versions = ['1.0.0', '2.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
 
       return expect(resp).to.eventually.have.status(200)
@@ -56,7 +56,7 @@ describe('Integration tests', () => {
         isMandatory: true,
         versions: ['1.0.0']
       }
-      let resp = request(createServer(options))
+      const resp = request(createServer(options))
         .get('/')
 
       return expect(resp).to.eventually.have.status(400)
@@ -64,7 +64,7 @@ describe('Integration tests', () => {
 
     it('should send an error when the version is not valid', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .query({ version: 'a.b.c' })
 
@@ -73,7 +73,7 @@ describe('Integration tests', () => {
 
     it('should send an error when the version is not supported', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .query({ version: '2.0.0' })
 
@@ -82,7 +82,7 @@ describe('Integration tests', () => {
 
     it('should provide additional information in the default error reply', () => {
       const versions = ['1.0.0']
-      let resp = request(createServer(versions))
+      const resp = request(createServer(versions))
         .get('/')
         .query({ version: '2.0.0' })
 
@@ -100,7 +100,7 @@ describe('Integration tests', () => {
         sendReply: false,
         versions: ['1.0.0']
       }
-      let resp = request(createServer(options))
+      const resp = request(createServer(options))
         .get('/')
         .query({ version: '2.0.0' })
 
@@ -114,7 +114,7 @@ describe('Integration tests', () => {
         generateError: () => new Error('custom error'),
         versions: ['1.0.0']
       }
-      let resp = request(createServer(options))
+      const resp = request(createServer(options))
         .get('/')
         .query({ version: '2.0.0' })
 
@@ -126,7 +126,7 @@ describe('Integration tests', () => {
       const options = {
         versions: ['1.0.0']
       }
-      let resp = request(createServer(options))
+      const resp = request(createServer(options))
         .get('/')
         .query({ version: '1.0.0' })
 
@@ -139,7 +139,7 @@ describe('Integration tests', () => {
         versions: ['1.0.0'],
         sendVersionHeader: false
       }
-      let resp = request(createServer(options))
+      const resp = request(createServer(options))
         .get('/')
         .query({ version: '1.0.0' })
 
@@ -151,7 +151,7 @@ describe('Integration tests', () => {
   describe('isVersion', () => {
     it('should call the next handler in the chain if the version matches', () => {
       const version = '1.0.0'
-      let resp = request(createRoutingServer([version], version))
+      const resp = request(createRoutingServer([version], version))
         .get('/')
         .query({ version })
 
@@ -162,7 +162,7 @@ describe('Integration tests', () => {
     it('should call the next route if the version does not match', () => {
       const version = '2.0.0'
       const requestedVersion = '3.0.0'
-      let resp = request(createRoutingServer([requestedVersion, version], version))
+      const resp = request(createRoutingServer([requestedVersion, version], version))
         .get('/')
         .query({ version: requestedVersion })
 
@@ -173,7 +173,7 @@ describe('Integration tests', () => {
 })
 
 function createServer (options) {
-  let app = express()
+  const app = express()
   app.use(validateVersion.validateVersion(options))
   app.get('*', (req, res) => {
     res.status(200).json({ matchedVersion: req.matchedVersion, version: req.version })
@@ -185,7 +185,7 @@ function createServer (options) {
 }
 
 function createRoutingServer (versions, version) {
-  let app = express()
+  const app = express()
   app.use(validateVersion.validateVersion(versions))
   app.get('*', validateVersion.isVersion(version), (req, res) => {
     res.status(200).json({ matchedVersion: req.matchedVersion, version: req.version })

@@ -1,17 +1,17 @@
 'use strict'
-let expect = require('chai').expect
-let rewire = require('rewire')
+const expect = require('chai').expect
+const rewire = require('rewire')
 
-let versionValidator = rewire('../lib')
+const versionValidator = rewire('../lib')
 
-let addVersion = versionValidator.__get__('addVersion')
+const addVersion = versionValidator.__get__('addVersion')
 let generateDefaultError = versionValidator.__get__('generateDefaultError')
-let isVersion = versionValidator.__get__('isVersion')
-let routeVersion = versionValidator.__get__('routeVersion')
-let sendError = versionValidator.__get__('sendError')
-let sendReply = versionValidator.__get__('sendReply')
-let validateArgs = versionValidator.__get__('validateArgs')
-let validateVersion = versionValidator.__get__('validateVersion')
+const isVersion = versionValidator.__get__('isVersion')
+const routeVersion = versionValidator.__get__('routeVersion')
+const sendError = versionValidator.__get__('sendError')
+const sendReply = versionValidator.__get__('sendReply')
+const validateArgs = versionValidator.__get__('validateArgs')
+const validateVersion = versionValidator.__get__('validateVersion')
 
 describe('validateVersion()', () => {
   it('should return a bound version of addVersion', () => {
