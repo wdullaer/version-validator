@@ -37,14 +37,14 @@
     }
   },
   "dependencies": {
-    "semver": "^6.2.0"
+    "semver": "^6.3.0"
   },
   "devDependencies": {
     "chai": "~4.2.0",
     "chai-as-promised": "~7.1.1",
     "chai-http": "git+https://github.com/chaijs/chai-http.git#master",
     "codeclimate-test-reporter": "~0.5.1",
-    "documentation": "~12.0.2",
+    "documentation": "~12.1.1",
     "eslint": "~6.1.0",
     "eslint-config-standard": "~13.0.1",
     "eslint-plugin-import": "~2.18.2",
