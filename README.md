@@ -1,7 +1,6 @@
 # Version Validator
-[![Greenkeeper badge](https://badges.greenkeeper.io/wdullaer/version-validator.svg)](https://greenkeeper.io/)
 ![NPM Version](https://img.shields.io/npm/v/version-validator.svg)
-[![Build Status](https://travis-ci.org/wdullaer/sse-utils.svg?branch=master)](https://travis-ci.org/wdullaer/version-validator)
+![Build Status](https://github.com/wdullaer/version-validator/workflows/version-validator/badge.svg)
 ![Dependency Status](https://david-dm.org/wdullaer/version-validator.svg)
 [![Code Climate](https://codeclimate.com/github/wdullaer/version-validator/badges/gpa.svg)](https://codeclimate.com/github/wdullaer/version-validator)
 [![Test Coverage](https://codeclimate.com/github/wdullaer/version-validator/badges/coverage.svg)](https://codeclimate.com/github/wdullaer/version-validator/coverage)
