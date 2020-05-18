@@ -25,6 +25,7 @@
     "lint": "./node_modules/.bin/eslint ./lib ./test",
     "mocha": "./node_modules/mocha/bin/_mocha --exit",
     "test": "npm run lint && ./node_modules/.bin/nyc --root lib/ ./node_modules/mocha/bin/mocha --exit",
+    "coverage": "./node_modules/.bin/nyc report --reporter=lcov",
     "prepublishOnly": "npm run test"
   },
   "engines": {

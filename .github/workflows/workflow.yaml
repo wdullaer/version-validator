@@ -1,0 +1,60 @@
+name: version-validator
+on:
+  push:
+    paths-ignore:
+    - "**.md"
+  pull_request:
+    paths-ignore:
+    - "**.md"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [8.x, 10.x, 12.x]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup node ${{matrix.node-version}}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{matrix.node-version}}
+    - run: npm ci
+    - run: npm test
+    - name: Code coverage
+      if: ${{ matrix.node-version == '12.x' }}
+      uses: paambaati/codeclimate-action@v2.6.0
+      env:
+        CC_TEST_REPORTER_ID: c335973c213928c6367d34f20229d7c68f1fa0afa9420e962be0728b8a5461d7
+      with:
+        coverageCommand: npm run coverage
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+  publish-gpr:
+    if: startsWith(github.ref, 'refs/tags/v')
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+          registry-url: https://npm.pkg.github.com/
+      - run: npm ci
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
